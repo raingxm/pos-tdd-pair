@@ -1,5 +1,13 @@
 function printInventory(inputs) {
-
+  var result = "***<没钱赚商店>购物清单***\n";
+  result += getShoppingList(populateInputs(inputs));
+  result +='----------------------\n' +
+  '挥泪赠送商品：\n';
+  result += getGiftList(populateInputs(inputs));
+  result+='----------------------\n';
+  result += getTotalList(populateInputs(inputs));
+  result +='**********************';
+  console.log(result);
 }
 
 function populateInputs(inputs) {

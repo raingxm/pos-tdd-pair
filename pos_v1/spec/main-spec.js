@@ -123,7 +123,7 @@ describe('pos', function () {
       expect(result).toEqual(expected);
     });
 
-    xit('should print correct text', function () {
+    it('should print correct text', function () {
 
         spyOn(console, 'log');
 
