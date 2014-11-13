@@ -17,7 +17,27 @@ describe('pos', function () {
         ];
     });
 
-    it('should print correct text', function () {
+    it('should populate items from input properly', function() {
+      var inputs = [
+          'ITEM000001',
+          'ITEM000001',
+          'ITEM000001',
+          'ITEM000002',
+          'ITEM000002',
+          'ITEM000003-2',
+          'ITEM000005',
+      ];
+      var expected = {
+        'ITEM000001': 3,
+        'ITEM000002': 2,
+        'ITEM000003': 2,
+        'ITEM000005': 1
+      };
+      var result = populateInputs(inputs);
+      expect(result).toEqual(expected);
+    });
+
+    xit('should print correct text', function () {
 
         spyOn(console, 'log');
 
