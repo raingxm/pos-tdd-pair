@@ -21,14 +21,13 @@ describe('pos', function () {
       var inputs = [
           'ITEM000001',
           'ITEM000001',
-          'ITEM000001',
           'ITEM000002',
           'ITEM000002',
           'ITEM000003-2',
           'ITEM000005',
       ];
       var expected = {
-        'ITEM000001': 3,
+        'ITEM000001': 2,
         'ITEM000002': 2,
         'ITEM000003': 2,
         'ITEM000005': 1
@@ -83,7 +82,7 @@ describe('pos', function () {
         }
       ];
 
-      var savingAmount = getSavingAmount(promotes, barcode, amount);
+      var result = getSavingAmount(promotes, barcode, amount);
       var expected = 1;
       expect(result).toEqual(expected);
     });

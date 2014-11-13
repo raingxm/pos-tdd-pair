@@ -17,10 +17,30 @@ function populateInputs(inputs) {
 }
 
 function getItemByBarcode(items, barcode) {
-  for(var i = 0; items.length; i++) {
+  for(var i = 0; i < items.length; i++) {
     if(items[i].barcode == barcode) return items[i];
   }
   return null;
+}
+
+function getSavingAmount(promotes, barcode, amount) {
+  var free=0;
+  for(var i=0;i<promotes.length;i++){
+    if(promotes[i].type=="BUY_TWO_GET_ONE_FREE"){
+      free += getSavingAmountWhenBuyTwoFreeOne(promotes[i].barcodes,barcode,amount);
+    }
+
+  }
+  return free;
+}
+
+function getSavingAmountWhenBuyTwoFreeOne(barcodes,barcode,amount){
+  for(var j=0;j<barcodes.length;j++){
+    if(barcodes[j]==barcode){
+      return Math.floor(amount / 3);
+    }
+  }
+  return 0;
 }
 
 function getBarcodeFromEachInput(input) {
