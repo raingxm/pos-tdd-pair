@@ -65,7 +65,26 @@ describe('pos', function () {
         unit: '瓶',
         price: 3.00
       };
-      var result = getItemByBarcode(items);
+      var result = getItemByBarcode(items, itemBarcode);
+      expect(result).toEqual(expected);
+    });
+
+    it('get saving amount', function() {
+
+      var barcode = "ITEM000001";
+      var amount = 3;
+      var promotes = [ {
+          type: 'BUY_TWO_GET_ONE_FREE',
+          barcodes: [
+              'ITEM000000',
+              'ITEM000001',
+              'ITEM000005'
+          ]
+        }
+      ];
+
+      var savingAmount = getSavingAmount(promotes, barcode, amount);
+      var expected = 1;
       expect(result).toEqual(expected);
     });
 

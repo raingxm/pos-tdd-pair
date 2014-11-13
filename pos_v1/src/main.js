@@ -16,6 +16,13 @@ function populateInputs(inputs) {
   return goodMap;
 }
 
+function getItemByBarcode(items, barcode) {
+  for(var i = 0; items.length; i++) {
+    if(items[i].barcode == barcode) return items[i];
+  }
+  return null;
+}
+
 function getBarcodeFromEachInput(input) {
   if(isWeighingFood(input)) return input.split('-')[0];
   return input;
