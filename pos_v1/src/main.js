@@ -45,29 +45,27 @@ function getSavingAmountWhenBuyTwoFreeOne(barcodes,barcode,amount){
 function getShoppingList(shoppingItems) {
   var result = "";
   for(var barcode in shoppingItems) {
-    result += generateEachItemInfo(barcode, shoppingItems);
+    result += generateEachItemInfo(barcode, shoppingItems, false);
   }
   return result;
 }
 
-function generateEachItemInfo(barcode, shoppingItems) {
+function generateEachItemInfo(barcode, shoppingItems, isGift) {
     var amount = shoppingItems[barcode];
     var item = getItemByBarcode(loadAllItems(), barcode);
     var savingAmount = getSavingAmount(loadPromotions(), barcode, amount);
     var totalPrice = (amount - savingAmount) * item.price;
-    return "名称：" + item.name + "，数量：" + amount + item.unit +
-        "，单价：" + item.price.toFixed(2) + "(元)，小计：" + totalPrice.toFixed(2) +"(元)\n";
+    if(!isGift){
+      return "名称：" + item.name + "，数量：" + amount + item.unit +
+          "，单价：" + item.price.toFixed(2) + "(元)，小计：" + totalPrice.toFixed(2) +"(元)\n";
+    }
+    return savingAmount+"" != "0" ? "名称："+item.name+"，数量："+savingAmount+item.unit+"\n" : "";
 }
 
 function getGiftList(shoppingItems){
   var result = "";
   for(var barcode in shoppingItems){
-    var amount = shoppingItems[barcode];
-    var item = getItemByBarcode(loadAllItems(),barcode);
-    var savingAmount = getSavingAmount(loadPromotions(),barcode,amount);
-    if(savingAmount+"" != "0"){
-      result += "名称："+item.name+"，数量："+savingAmount+item.unit+"\n";
-    }
+    result += generateEachItemInfo(barcode, shoppingItems, true);
   }
   return result;
 }
