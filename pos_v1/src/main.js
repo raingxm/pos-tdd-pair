@@ -70,6 +70,20 @@ function getGiftList(shoppingItems){
   return result;
 }
 
+function getTotalList(shoppingItems) {
+  var totalPayedPrice = 0;
+  var totalSavingPrice = 0;
+  for(var barcode in shoppingItems) {
+    var amount = shoppingItems[barcode];
+    var item = getItemByBarcode(loadAllItems(), barcode);
+    var savingAmount = getSavingAmount(loadPromotions(), barcode, amount);
+    totalSavingPrice += savingAmount * item.price;
+    totalPayedPrice += (amount - savingAmount) * item.price;
+  }
+  return '总计：' + totalPayedPrice.toFixed(2) + '(元)\n' +
+        '节省：' + totalSavingPrice.toFixed(2) + '(元)\n';
+}
+
 function getBarcodeFromEachInput(input) {
   if(isWeighingFood(input)) return input.split('-')[0];
   return input;

@@ -112,6 +112,17 @@ describe('pos', function () {
       expect(result).toEqual(expected);
     });
 
+    it('get total list',function(){
+      var shoppingItems = {
+        'ITEM000001': 5,
+        'ITEM000003': 2,
+        'ITEM000005': 3
+      };
+      var expected = "总计：51.00(元)\n" + "节省：7.50(元)\n";
+      var result = getTotalList(shoppingItems);
+      expect(result).toEqual(expected);
+    });
+
     xit('should print correct text', function () {
 
         spyOn(console, 'log');
