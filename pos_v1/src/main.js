@@ -59,6 +59,19 @@ function generateEachItemInfo(barcode, shoppingItems) {
         "，单价：" + item.price.toFixed(2) + "(元)，小计：" + totalPrice.toFixed(2) +"(元)\n";
 }
 
+function getGiftList(shoppingItems){
+  var result = "";
+  for(var barcode in shoppingItems){
+    var amount = shoppingItems[barcode];
+    var item = getItemByBarcode(loadAllItems(),barcode);
+    var savingAmount = getSavingAmount(loadPromotions(),barcode,amount);
+    if(savingAmount+"" != "0"){
+      result += "名称："+item.name+"，数量："+savingAmount+item.unit+"\n";
+    }
+  }
+  return result;
+}
+
 function getBarcodeFromEachInput(input) {
   if(isWeighingFood(input)) return input.split('-')[0];
   return input;

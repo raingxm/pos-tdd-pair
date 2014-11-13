@@ -93,10 +93,22 @@ describe('pos', function () {
         'ITEM000003': 2,
         'ITEM000005': 3
       };
-      var result = getShoppingList(shoppingItems);
       var expected = "名称：雪碧，数量：5瓶，单价：3.00(元)，小计：12.00(元)\n" +
                      "名称：荔枝，数量：2斤，单价：15.00(元)，小计：30.00(元)\n" +
                      "名称：方便面，数量：3袋，单价：4.50(元)，小计：9.00(元)\n";
+      var result = getShoppingList(shoppingItems);
+      expect(result).toEqual(expected);
+    });
+
+    it('get gift items list', function(){
+      var shoppingItems = {
+        'ITEM000001': 5,
+        'ITEM000003': 2,
+        'ITEM000005': 3
+      };
+      var expected = "名称：雪碧，数量：1瓶\n" +
+                      "名称：方便面，数量：1袋\n";
+      var result = getGiftList(shoppingItems);
       expect(result).toEqual(expected);
     });
 
