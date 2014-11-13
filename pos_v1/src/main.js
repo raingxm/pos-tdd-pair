@@ -29,7 +29,6 @@ function getSavingAmount(promotes, barcode, amount) {
     if(promotes[i].type=="BUY_TWO_GET_ONE_FREE"){
       free += getSavingAmountWhenBuyTwoFreeOne(promotes[i].barcodes,barcode,amount);
     }
-
   }
   return free;
 }

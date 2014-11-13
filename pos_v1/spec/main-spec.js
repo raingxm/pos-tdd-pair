@@ -87,6 +87,20 @@ describe('pos', function () {
       expect(result).toEqual(expected);
     });
 
+    it('get shopping list',function(){
+      var shoppingItems = {
+        'ITEM000001': 2,
+        'ITEM000002': 2,
+        'ITEM000003': 2,
+        'ITEM000005': 1
+      };
+      var result = getShoppingList(shoppingItems);
+      var expected = "名称：可口可乐，数量：3瓶，单价：3.00(元)，小计：6.00(元)\n" +
+                      "名称：羽毛球，数量：5个，单价：1.00(元)，小计：4.00(元)\n" +
+                      "名称：苹果，数量：2斤，单价：5.50(元)，小计：11.00(元)\n";
+      expect(result).toEqual(expected);
+    });
+
     xit('should print correct text', function () {
 
         spyOn(console, 'log');
