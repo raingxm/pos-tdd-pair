@@ -45,15 +45,18 @@ function getSavingAmountWhenBuyTwoFreeOne(barcodes,barcode,amount){
 function getShoppingList(shoppingItems) {
   var result = "";
   for(var barcode in shoppingItems) {
+    result += generateEachItemInfo(barcode, shoppingItems);
+  }
+  return result;
+}
+
+function generateEachItemInfo(barcode, shoppingItems) {
     var amount = shoppingItems[barcode];
     var item = getItemByBarcode(loadAllItems(), barcode);
     var savingAmount = getSavingAmount(loadPromotions(), barcode, amount);
     var totalPrice = (amount - savingAmount) * item.price;
-    result += "名称：" + item.name + "，数量：" + amount + item.unit +
+    return "名称：" + item.name + "，数量：" + amount + item.unit +
         "，单价：" + item.price.toFixed(2) + "(元)，小计：" + totalPrice.toFixed(2) +"(元)\n";
-
-  }
-  return result;
 }
 
 function getBarcodeFromEachInput(input) {
