@@ -4,22 +4,28 @@ function printInventory(inputs) {
 
 function populateInputs(inputs) {
   var goodMap = {};
-  var barcode = "";
-  var amount = 0;
   for(var i = 0; i < inputs.length; i++) {
-    if(inputs[i].indexOf('-') >= 0) {
-      barcode = inputs[i].split('-')[0];
-      amount = parseInt(inputs[i].split('-')[1]);
-      goodMap[barcode] = amount;
-      continue;
-    }
-
-    barcode = inputs[i];
-    if(goodMap[barcode]) {
-      goodMap[barcode]++;
+    var barcode = getBarcodeFromEachInput(inputs[i]);
+    var amount = getAmountFromEachInput(inputs[i]);
+    if(goodMap.hasOwnProperty(barcode)) {
+      goodMap[barcode] += amount;
     }else {
-      goodMap[barcode] = 1;
+      goodMap[barcode] = amount;
     }
   }
   return goodMap;
+}
+
+function getBarcodeFromEachInput(input) {
+  if(isWeighingFood(input)) return input.split('-')[0];
+  return input;
+}
+
+function getAmountFromEachInput(input) {
+  if(isWeighingFood(input)) return parseInt(input.split('-')[1]);
+  return 1;
+}
+
+function isWeighingFood(input) {
+  return input.indexOf('-') >= 0;
 }
