@@ -37,6 +37,38 @@ describe('pos', function () {
       expect(result).toEqual(expected);
     });
 
+    it('should get item name unit price from barcode', function() {
+      var items = [
+          {
+              barcode: 'ITEM000000',
+              name: '可口可乐',
+              unit: '瓶',
+              price: 3.00
+          },
+          {
+              barcode: 'ITEM000001',
+              name: '雪碧',
+              unit: '瓶',
+              price: 3.00
+          },
+          {
+              barcode: 'ITEM000002',
+              name: '苹果',
+              unit: '斤',
+              price: 5.50
+          }
+      ];
+      var itemBarcode = "ITEM000001";
+      var expected = {
+        barcode: 'ITEM000001',
+        name: '雪碧',
+        unit: '瓶',
+        price: 3.00
+      };
+      var result = getItemByBarcode(items);
+      expect(result).toEqual(expected);
+    });
+
     xit('should print correct text', function () {
 
         spyOn(console, 'log');
